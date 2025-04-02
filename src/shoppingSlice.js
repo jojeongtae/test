@@ -19,21 +19,21 @@ const shoppingSlice = createSlice({
     addMenu: (state, action) => {
       const product = action.payload;
       const existingItem = state.cartItems.find(item => item.id === product.id);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        state.cartItems.push({ ...product, quantity: 1 });
+      if (existingItem) { //existingItem이 true면 if 실행
+        existingItem.quantity += 1; 
+      } else { 
+        state.cartItems.push({ ...product, quantity: 1 }); //아니면 기본값 1고정 배열 재배치
       }
     },
     updateCartQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       const existingItem = state.cartItems.find(item => item.id === id);
       if (existingItem) {
-        if (quantity > 0) {
-          existingItem.quantity = quantity;
+        if (quantity > 0) { 
+          existingItem.quantity = quantity; //기본값이 0보다 크면 기본값수정
         } else {
-          // 수량을 0으로 설정하면 제거합니다.
-          state.cartItems = state.cartItems.filter(item => item.id !== id);
+        
+          state.cartItems = state.cartItems.filter(item => item.id !== id); //0보다 작으면 삭제
         }
       }
     }
