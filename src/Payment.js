@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 export default function Payment() {
-  const cartItems = useSelector((state) => state.shop?.cartItems) || [];
+  const cartItems = useSelector((state) => state.shop.cartItems);
 
   let result = 0;
   cartItems.forEach(item => {
